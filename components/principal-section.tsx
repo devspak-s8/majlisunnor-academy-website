@@ -1,88 +1,98 @@
-"use client"
+'use client';
 
-import { useEffect, useRef, useState } from "react"
-import Image from "next/image"
+import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 
 export function PrincipalSection() {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true)
+          setIsVisible(true);
         }
       },
-      { threshold: 0.2 },
-    )
+      { threshold: 0.2 }
+    );
 
     if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+      observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect()
-  }, [])
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 md:py-32 bg-card islamic-pattern">
-      <div className="container mx-auto px-4">
+    <section ref={sectionRef} className='py-24 md:py-32 bg-card islamic-pattern'>
+      <div className='container mx-auto px-4'>
         <div
           className={`grid md:grid-cols-2 gap-12 lg:gap-20 items-center transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
           {/* Principal Photo */}
-          <div className="flex justify-center md:justify-end">
-            <div className="relative group">
-              <div className="absolute -inset-4 bg-gradient-to-r from-primary to-secondary rounded-full blur-2xl opacity-20 group-hover:opacity-30 transition-opacity" />
-              <div className="relative w-80 h-80 rounded-full overflow-hidden shadow-2xl ring-8 ring-background">
-                <Image src="/islamic-scholar-principal-portrait.jpg" alt="Principal" fill className="object-cover" />
+          <div className='flex justify-center md:justify-end'>
+            <div className='relative group'>
+              <div className='absolute -inset-4 bg-gradient-to-r from-primary to-secondary rounded-full blur-2xl opacity-20 group-hover:opacity-30 transition-opacity' />
+              <div className='relative w-80 h-80 rounded-full overflow-hidden shadow-2xl ring-8 ring-background'>
+                <Image
+                  src='/mudeer.png'
+                  alt='Sheikh Yusuf Nurudeen'
+                  fill
+                  className='object-cover'
+                />
               </div>
             </div>
           </div>
 
           {/* Principal Info */}
-          <div className="space-y-6">
-            <div className="space-y-2">
-              <h2 className="font-serif text-xl md:text-2xl text-primary" dir="rtl">
+          <div className='space-y-6'>
+            <div className='space-y-2'>
+              <h2 className='font-serif text-xl md:text-2xl text-primary' dir='rtl'>
                 عن مديرنا
               </h2>
-              <h3 className="font-serif text-4xl md:text-5xl font-bold text-foreground text-balance">
+              <h3 className='font-serif text-4xl md:text-5xl font-bold text-foreground text-balance'>
                 About Our Principal
               </h3>
-              <div className="w-24 h-1 bg-accent rounded-full" />
+              <div className='w-24 h-1 bg-accent rounded-full' />
             </div>
 
-            <div className="space-y-4 text-lg leading-relaxed text-muted-foreground">
-              <p dir="rtl">
-                يجلب الدكتور محمد الرشيد أكثر من 25 عامًا من الخبرة في التعليم الإسلامي والدراسات القرآنية. لقد غير
-                تفانيه في الحفاظ على المعرفة الإسلامية الأصيلة مع تبني أساليب التدريس الحديثة حياة عدد لا يحصى من الناس.
+            <div className='space-y-4 text-lg leading-relaxed text-muted-foreground'>
+              <p dir='rtl'>
+                يُعْرَفُ الشَّيْخ يُوسُف نُورُالدِّين بِخِبْرَتِهِ الواسِعَة فِي التَّعْلِيمِ
+                الإِسْلَامِيِّ وَالدِّرَاسَاتِ القُرْآنِيَّةِ، وَهُوَ خَرِيجُ كُلِّيَّةِ الفِيزْيَاء
+                مِنْ جَامِعَةِ فُنَاأب.
               </p>
               <p>
-                Dr. Muhammad Al-Rashid brings over 25 years of experience in Islamic education and Quranic studies. His
-                dedication to preserving authentic Islamic knowledge while embracing modern teaching methodologies has
-                transformed countless lives.
+                Sheikh Yusuf Nurudeen is a graduate of Physics from FUNAAB and brings extensive
+                experience in Islamic education and Quranic studies. He inspires students with his
+                dedication and modern teaching methodologies.
               </p>
-              <p dir="rtl">
-                خريج جامعة الأزهر الحاصل على درجة الدكتوراه في الفقه الإسلامي، ألف الدكتور الرشيد العديد من الأعمال
-                العلمية ويواصل إلهام الطلاب بفهمه العميق للقرآن والسنة.
+              <p dir='rtl'>
+                يُسَاهِمُ فِي تَعْلِيمِ الطُّلَّابِ فَهْمَ القُرْآنِ وَالسُّنَّةِ وَيَسْعَى جَاهِدًا
+                لِغَرْسِ الْمَعْرِفَةِ الإِسْلَامِيَّةِ الأَصِيلَةِ فِي أَفْئِدَةِ الجِيلِ
+                الصَّاعِدِ.
               </p>
               <p>
-                A graduate of Al-Azhar University with a PhD in Islamic Jurisprudence, Dr. Al-Rashid has authored
-                numerous scholarly works and continues to inspire students with his profound understanding of the Quran
-                and Sunnah.
+                He continues to guide students in understanding the Quran and Sunnah while
+                instilling authentic Islamic knowledge in the next generation.
               </p>
-              <p className="font-serif italic text-primary text-xl" dir="rtl">
-                "العلم نور، ونور العلم ينير طريق الصلاح"
+              <p className='font-serif italic text-primary text-xl' dir='rtl'>
+                أَرْخِ الْعُلُومَ مَطِيَّةً نَحْوَ الْعُلَى،
+                <br />
+                تُصْبِحُ غَدًا بَيْنَ أَنَامٍ كَضِيَغٍ
               </p>
-              <p className="font-serif italic text-primary text-xl">
-                "Knowledge is light, and the light of knowledge illuminates the path to righteousness."
+              <p className='font-serif italic text-primary text-lg mt-2'>
+                "Use knowledge as a steed towards the heights,
+                <br />
+                Tomorrow you will rise among lions (the brave and strong)."
               </p>
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
