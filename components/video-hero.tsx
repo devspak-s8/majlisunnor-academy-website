@@ -5,22 +5,30 @@ import { Volume2, VolumeX } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export function VideoHero() {
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch((error) => {
-        console.log('Autoplay prevented:', error);
-      });
-    }
+    const playVideo = async () => {
+      if (videoRef.current) {
+        try {
+          await videoRef.current.play(); // start autoplay
+          // Attempt to unmute
+          videoRef.current.muted = false;
+          setIsMuted(false);
+        } catch (err) {
+          console.log('Autoplay with sound prevented:', err);
+          // Video remains muted until user interacts
+        }
+      }
+    };
+    playVideo();
   }, []);
 
   const toggleMute = () => {
     if (videoRef.current) {
       videoRef.current.muted = !isMuted;
       setIsMuted(!isMuted);
-      // alert(isMuted)
     }
   };
 
@@ -35,7 +43,7 @@ export function VideoHero() {
         playsInline
         className='absolute inset-0 w-full h-full object-cover'
       >
-        <source src='/Majlis.mp4' type='video/mp4' media='' />
+        <source src='/Majlis.mp4' type='video/mp4' />
       </video>
 
       {/* Gradient Overlay */}
@@ -44,26 +52,26 @@ export function VideoHero() {
       {/* Content */}
       <div className='relative h-full flex items-center justify-center'>
         <div className='container mx-auto px-4 text-center'>
-          <div className='max-w-4xl mx-auto space-y-6 animate-in fade-in slide-in-from-bottom duration-1000'>
+          <div className='max-w-4xl mx-auto space-y-6'>
             <h2
-              className='font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white/90 drop-shadow-2xl animate-in fade-in slide-in-from-bottom duration-1000 delay-100'
+              className='font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white/90 drop-shadow-2xl'
               dir='rtl'
             >
               أكاديمية مجلس النور
             </h2>
-            <h1 className='font-serif text-5xl md:text-7xl lg:text-8xl font-bold text-white drop-shadow-2xl text-balance animate-in fade-in slide-in-from-bottom duration-1000 delay-200'>
+            <h1 className='font-serif text-5xl md:text-7xl lg:text-8xl font-bold text-white drop-shadow-2xl text-balance'>
               Welcome to Majlisunnor Academy
             </h1>
             <p
-              className='text-lg md:text-xl text-white/90 font-light tracking-wide drop-shadow-lg animate-in fade-in slide-in-from-bottom duration-1000 delay-400'
+              className='text-lg md:text-xl text-white/90 font-light tracking-wide drop-shadow-lg'
               dir='rtl'
             >
               لِتَحْفِيظِ القُرْآنِ وَتَعَالِيمِ العَرَبِيَّةِ وَالقُرْآنِيَّةِ وَالإِسْلَامِيَّةِ
             </p>
-            <p className='text-xl md:text-2xl lg:text-3xl text-white/95 font-light tracking-wide drop-shadow-lg animate-in fade-in slide-in-from-bottom duration-1000 delay-500'>
+            <p className='text-xl md:text-2xl lg:text-3xl text-white/95 font-light tracking-wide drop-shadow-lg'>
               Centre for Quranic Memorization, Arabic and Islamic Studies.
             </p>
-            <div className='pt-8 animate-in fade-in slide-in-from-bottom duration-1000 delay-700'>
+            <div className='pt-8'>
               <Button
                 size='lg'
                 className='bg-accent hover:bg-accent/90 text-accent-foreground text-lg px-8 py-6 rounded-2xl shadow-2xl'
