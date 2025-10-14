@@ -80,10 +80,11 @@ export function PrincipalSection() {
                 instilling authentic Islamic knowledge in the next generation.
               </p>
               <p className='font-serif italic text-primary text-xl' dir='rtl'>
-                أَرْخِ الْعُلُومَ مَطِيَّةً نَحْوَ الْعُلَى،
+                أَرْخِ الْعُلُومَ مَطِيَّةً نَحْوَ الْعُلَا،
                 <br />
-                تُصْبِحُ غَدًا بَيْنَ أَنَامٍ كَضِيَغٍ
+                تُصْبِحُ غَدًا بَيْنَ أَنَامٍ كَضَيْغَمٍ
               </p>
+
               <p className='font-serif italic text-primary text-lg mt-2'>
                 "Use knowledge as a steed towards the heights,
                 <br />
